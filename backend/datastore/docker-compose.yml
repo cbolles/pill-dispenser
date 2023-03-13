@@ -1,0 +1,19 @@
+version: '2'
+services:
+  mongo:
+    image: mongo
+    ports: ["27024:27017"]
+    restart: "always"
+    volumes:
+      - pill-server:/data/db
+  pill:
+    image: pill-server
+    restart: always
+    depends_on:
+      - mongo
+    ports: ["3006:3000"]
+    env_file:
+      - stack.env
+volumes:
+  pill-server:
+    external: true
