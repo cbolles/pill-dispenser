@@ -19,13 +19,8 @@ import { User, UserSchema } from './user.model';
         signOptions: { expiresIn: '4h', algorithm: 'RS256', issuer: 'cbolles' }
       })
     }),
-    MongooseModule.forFeature([ { name: User.name, schema: UserSchema } ])
+    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }])
   ],
-  providers: [
-    AuthResolver,
-    AuthService,
-    JwtAuthGuard,
-    JwtStrategy
-  ]
+  providers: [AuthResolver, AuthService, JwtAuthGuard, JwtStrategy]
 })
 export class AuthModule {}

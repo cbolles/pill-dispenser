@@ -6,13 +6,15 @@ import { UserLogin } from './dtos/user-login.dto';
 import { UserSignup } from './dtos/user-signup.dto';
 import { User, UserDocument } from './user.model';
 import { hash, compare } from 'bcrypt';
-import {ConfigService} from '@nestjs/config';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly jwtService: JwtService,
-              @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
-              private readonly configService: ConfigService) {}
+  constructor(
+    private readonly jwtService: JwtService,
+    @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
+    private readonly configService: ConfigService
+  ) {}
 
   async signup(credentials: UserSignup): Promise<string> {
     // Make sure the user is unique
@@ -48,7 +50,7 @@ export class AuthService {
     return this.jwtService.sign(this.toPayload(user));
   }
 
-  private toPayload(user: User): { _id: string, username: string } {
+  private toPayload(user: User): { _id: string; username: string } {
     return {
       _id: user._id.toString(),
       username: user.username
