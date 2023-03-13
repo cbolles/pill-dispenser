@@ -33,6 +33,10 @@ export class PrescriptionService {
     return await this.prescriptionModel.find({ _id: { $in: user.prescriptions } }).exec();
   }
 
+  async removePrescriptionFromUser(user: User, prescription: Prescription): Promise<void> {
+    await this.userModel.findByIdAndUpdate(user._id, { $pull: { prescriptions: prescription._id } });
+  }
+
   async createPrescription(prescription: NewPrescription): Promise<Prescription> {
     return this.prescriptionModel.create(prescription);
   }

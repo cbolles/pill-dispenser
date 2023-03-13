@@ -30,6 +30,13 @@ export class PrescriptionResolver {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Mutation(() => Boolean)
+  async removePrescriptionFromUser(@UserContext() user: User, @Args('prescription', { type: () => String }, PrescriptionPipe) prescription: Prescription): Promise<boolean> {
+    await this.prescriptionService.removePrescriptionFromUser(user, prescription);
+    return true;
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Query(() => [Prescription])
   async prescriptionsForUser(@UserContext() user: User): Promise<Prescription[]> {
     return this.prescriptionService.getPrescriptionForUser(user);

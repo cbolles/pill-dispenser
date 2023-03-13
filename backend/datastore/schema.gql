@@ -18,6 +18,7 @@ type Mutation {
   login(credentials: UserLogin!): String!
   createPrescription(prescription: NewPrescription!): Prescription!
   addPrescriptionToUser(prescription: String!): Boolean!
+  removePrescriptionFromUser(prescription: String!): Boolean!
 }
 
 input UserSignup {
