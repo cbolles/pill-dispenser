@@ -6,6 +6,7 @@ import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './config/configuration';
 import { MongooseModule } from '@nestjs/mongoose';
+import { PrescriptionModule } from './prescription/prescription.module';
 
 @Module({
   imports: [
@@ -24,7 +25,8 @@ import { MongooseModule } from '@nestjs/mongoose';
       load: [configuration],
       isGlobal: true
     }),
-    AuthModule
+    AuthModule,
+    PrescriptionModule
   ],
 })
 export class AppModule {}

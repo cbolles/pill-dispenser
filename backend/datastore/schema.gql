@@ -2,13 +2,20 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Prescription {
+  _id: ID!
+  name: String!
+}
+
 type Query {
   hello: String!
+  prescriptions: [Prescription!]!
 }
 
 type Mutation {
   signup(credentials: UserSignup!): String!
   login(credentials: UserLogin!): String!
+  createPrescription(prescription: NewPrescription!): Prescription!
 }
 
 input UserSignup {
@@ -19,4 +26,8 @@ input UserSignup {
 input UserLogin {
   username: String!
   password: String!
+}
+
+input NewPrescription {
+  name: String!
 }
