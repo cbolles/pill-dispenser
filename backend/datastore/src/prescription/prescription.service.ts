@@ -7,8 +7,10 @@ import { User, UserDocument } from '../auth/user.model';
 
 @Injectable()
 export class PrescriptionService {
-  constructor(@InjectModel(Prescription.name) private readonly prescriptionModel: Model<PrescriptionDocument>,
-              @InjectModel(User.name) private readonly userModel: Model<UserDocument>) {}
+  constructor(
+    @InjectModel(Prescription.name) private readonly prescriptionModel: Model<PrescriptionDocument>,
+    @InjectModel(User.name) private readonly userModel: Model<UserDocument>
+  ) {}
 
   async findAll(): Promise<Prescription[]> {
     return this.prescriptionModel.find().exec();
@@ -19,8 +21,6 @@ export class PrescriptionService {
   }
 
   async addPrescriptionToUser(user: User, prescription: Prescription): Promise<void> {
-    console.log(user);
-    console.log(prescription);
     // If the prescription is already in the user's list, don't add it again
     if (user.prescriptions.includes(prescription._id)) {
       return;

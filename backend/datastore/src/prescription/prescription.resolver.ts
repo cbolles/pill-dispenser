@@ -24,14 +24,20 @@ export class PrescriptionResolver {
 
   @UseGuards(JwtAuthGuard)
   @Mutation(() => Boolean)
-  async addPrescriptionToUser(@UserContext() user: User, @Args('prescription', { type: () => String }, PrescriptionPipe) prescription: Prescription): Promise<boolean> {
+  async addPrescriptionToUser(
+    @UserContext() user: User,
+    @Args('prescription', { type: () => String }, PrescriptionPipe) prescription: Prescription
+  ): Promise<boolean> {
     await this.prescriptionService.addPrescriptionToUser(user, prescription);
     return true;
   }
 
   @UseGuards(JwtAuthGuard)
   @Mutation(() => Boolean)
-  async removePrescriptionFromUser(@UserContext() user: User, @Args('prescription', { type: () => String }, PrescriptionPipe) prescription: Prescription): Promise<boolean> {
+  async removePrescriptionFromUser(
+    @UserContext() user: User,
+    @Args('prescription', { type: () => String }, PrescriptionPipe) prescription: Prescription
+  ): Promise<boolean> {
     await this.prescriptionService.removePrescriptionFromUser(user, prescription);
     return true;
   }

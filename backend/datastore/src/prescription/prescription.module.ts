@@ -11,7 +11,7 @@ import { PrescriptionService } from './prescription.service';
     MongooseModule.forFeature([
       { name: Prescription.name, schema: PrescriptionSchema },
       { name: User.name, schema: UserSchema }
-    ]),
+    ])
   ],
   providers: [PrescriptionService, PrescriptionResolver, PrescriptionPipe]
 })
