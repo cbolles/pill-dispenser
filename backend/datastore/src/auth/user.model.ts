@@ -10,6 +10,9 @@ export class User {
 
   @Prop()
   password: string;
+
+  @Prop()
+  prescriptions: mongoose.Types.ObjectId[];
 }
 
 export type UserDocument = User & Document;

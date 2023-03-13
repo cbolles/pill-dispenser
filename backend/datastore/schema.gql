@@ -10,12 +10,14 @@ type Prescription {
 type Query {
   hello: String!
   prescriptions: [Prescription!]!
+  prescriptionsForUser: [Prescription!]!
 }
 
 type Mutation {
   signup(credentials: UserSignup!): String!
   login(credentials: UserLogin!): String!
   createPrescription(prescription: NewPrescription!): Prescription!
+  addPrescriptionToUser(prescription: String!): Boolean!
 }
 
 input UserSignup {
