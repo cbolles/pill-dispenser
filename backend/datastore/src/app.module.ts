@@ -19,7 +19,7 @@ import { PrescriptionModule } from './prescription/prescription.module';
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), './schema.gql'),
+      autoSchemaFile: join(process.cwd(), './schema.gql')
     }),
     ConfigModule.forRoot({
       load: [configuration],
@@ -27,6 +27,6 @@ import { PrescriptionModule } from './prescription/prescription.module';
     }),
     AuthModule,
     PrescriptionModule
-  ],
+  ]
 })
 export class AppModule {}

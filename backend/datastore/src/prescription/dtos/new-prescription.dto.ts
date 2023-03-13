@@ -5,4 +5,3 @@ export class NewPrescription {
   @Field()
   name: string;
 }
-
