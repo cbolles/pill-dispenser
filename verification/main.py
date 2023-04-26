@@ -5,10 +5,10 @@ from dispenser import Dispenser
 
 
 PILL_MAPPING = {
-    'Advil': 1,
-    'Tylenol': 2,
-    'Claritin': 3,
-    'Zyrtec': 4
+    'tylenol': 1,
+    'lisinopril': 2,
+    'lipitor': 3,
+    'metformin': 4
 }
 
 
