@@ -32,7 +32,7 @@ def main():
     pills = pill_client.get_prescriptions()
 
     # Make the serial client
-    dispenser = Dispenser()
+    dispenser = Dispenser(os.environ.get('DISPENSER_PORT'))
 
     # Enter loop to distribute the pills
     for pill in pills:
