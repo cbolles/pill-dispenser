@@ -1,6 +1,19 @@
 from dotenv import load_dotenv
-from database import PillClient
+from database import Perscription, PillClient
 import os
+from dispenser import Dispenser
+
+
+PILL_MAPPING = {
+    'Advil': 1,
+    'Tylenol': 2,
+    'Claritin': 3,
+    'Zyrtec': 4
+}
+
+
+def verify_pill(pill: Perscription):
+    pass
 
 
 def main():
@@ -18,10 +31,20 @@ def main():
     # Get the pills that the user takes
     pills = pill_client.get_prescriptions()
 
-    # Do something with the pills
-    print(pills)
+    # Make the serial client
+    dispenser = Dispenser()
 
     # Enter loop to distribute the pills
+    for pill in pills:
+        # Select the pill
+        dispenser.select_pill(PILL_MAPPING[pill.name])
+
+        # Ensure the correct pill is selected
+        verify_pill(pill)
+
+        # Dispense the pill
+        dispenser.dispense()
+
 
 
 if __name__ == '__main__':
