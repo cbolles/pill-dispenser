@@ -43,44 +43,47 @@ void loop() {
 
   if (Serial.available() > 0) 
   {
+    Serial.println("ack"); //ACKNOWLEDGE
     recValue=Serial.read();
-
-    if (recValue == 04) //PILL 4
+    if (recValue == 05) //DISPENSE
     {
+      if (recValue == 04) //PILL 4
+      {
+        Serial.begin(38400);
+            carostep.moveTo(stepsPerRevolution * 0.25);
+        while (carostep.distanceToGo() != 0) {
+          carostep.run();
+        }
+        delay(2000);
+        carostep.moveTo(0);
+      }
+      else if (recValue == 03) //PILL 3
+      {
+        Serial.begin(38400);
+          carostep.moveTo(stepsPerRevolution * 0.50);
+        while (carostep.distanceToGo() != 0) {
+          carostep.run();
+        }
+      delay(2000);
+      carostep.moveTo(0);
+      } 
+      else if (recValue == 02) //PILL 2
+      { //PILL 2
       Serial.begin(38400);
-          carostep.moveTo(stepsPerRevolution * 0.25);
+        carostep.moveTo(stepsPerRevolution * -0.25);
       while (carostep.distanceToGo() != 0) {
         carostep.run();
       }
       delay(2000);
       carostep.moveTo(0);
-    }
-    else if (recValue == 03) //PILL 3
-    {
-      Serial.begin(38400);
-        carostep.moveTo(stepsPerRevolution * 0.50);
-      while (carostep.distanceToGo() != 0) {
-        carostep.run();
+      } 
+      else if (recValue == 01) //PILL 1
+      { //PILL 1
+      // Stays in initial position
       }
-    delay(2000);
-    carostep.moveTo(0);
-    } 
-    else if (recValue == 02) //PILL 2
-    { //PILL 2
-    Serial.begin(38400);
-      carostep.moveTo(stepsPerRevolution * -0.25);
-    while (carostep.distanceToGo() != 0) {
+      while (carostep.distanceToGo() != 0) {
       carostep.run();
-    }
-    delay(2000);
-    carostep.moveTo(0);
-    } 
-    else if (recValue == 01) //PILL 1
-    { //PILL 1
-    // Stays in initial position
-    }
-    while (carostep.distanceToGo() != 0) {
-    carostep.run();
+      }
     }
   }
 }
