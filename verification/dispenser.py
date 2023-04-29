@@ -12,13 +12,13 @@ class Dispenser:
         time.sleep(5)
 
     def select_pill(self, number: int) -> None:
-        select_cmd = f'select: {number}\n'.encode('utf-8')
+        select_cmd = f'{number}\n'.encode('utf-8')
         self.serial.write(select_cmd)
         self.serial.write(select_cmd)
         self.wait_for_ack()
 
     def dispense(self) -> None:
-        self.serial.write(b'dispense\n')
+        self.serial.write(b'5\n')
         self.wait_for_ack()
 
     def wait_for_ack(self) -> None:
