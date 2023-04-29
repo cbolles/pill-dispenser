@@ -14,7 +14,6 @@ class Dispenser:
     def select_pill(self, number: int) -> None:
         select_cmd = f'{number}\n'.encode('utf-8')
         self.serial.write(select_cmd)
-        self.serial.write(select_cmd)
         self.wait_for_ack()
 
     def dispense(self) -> None:
