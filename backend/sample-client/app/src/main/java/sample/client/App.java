@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import io.carbynestack.amphora.client.AmphoraClient;
 import io.carbynestack.amphora.client.DefaultAmphoraClient;
@@ -44,8 +45,24 @@ public class App {
     }
 
     public static void main(String[] args) throws AmphoraClientException {
+        // Get the command line arguments
+        if (args.length > 2) {
+            System.err.println("Usage:\n\tcheck <prescription name> <threshold>");
+        }
+        String prescription = args[0];
+        int threshold = Integer.parseInt(args[1]);
+
+
         Amphora amphora = App.makeAmphoraClient();
-        System.out.println("here");
+
+        // Create the secret for the threshold
+        UUID thresholdSecret = amphora.createThresholdSecret(threshold);
         
+        // Get the target prescription secret
+        UUID prescriptionSecret = amphora.getPrescriptionSecret(prescription);
+        
+
+        // Remove the threshold secret
+        amphora.deleteThresholdSecret(thresholdSecret);
     }
 }
