@@ -17,6 +17,13 @@ plugins {
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
+    maven {
+        url = 'https://maven.pkg.github.com/carbynestack/*'
+        credentials {
+            username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_PACKAGE_USERNAME")
+            password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_PACKAGE_TOKEN")
+        }
+    }
 }
 
 dependencies {
@@ -28,6 +35,7 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.1-jre'
+    implementation "io.carbynestack:amphora-java-client:0.1-SNAPSHOT-4741225899-24-4a99be8"
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
