@@ -30,6 +30,7 @@ dependencies {
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.1-jre'
     implementation 'io.carbynestack:amphora-java-client:0.1-SNAPSHOT-4741225899-24-4a99be8'
+    implementation 'io.carbynestack:ephemeral-java-client:0.1-SNAPSHOT-4404775200-24-30ce5fa'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
