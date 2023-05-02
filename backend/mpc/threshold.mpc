@@ -1,0 +1,15 @@
+port=regint(10000)
+listen(port)
+socket_id = regint()
+acceptclientconnection(socket_id, port)
+v = sint.read_from_socket(socket_id, 2)
+
+# The logic
+drug = v[0]
+threshold = v[1]
+result = drug < threshold
+
+# Epilogue to return the outputs
+resp = Array(1, sint)
+resp[0] = result
+sint.write_to_socket(socket_id, resp)
